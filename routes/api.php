@@ -8,6 +8,7 @@ use App\Http\Controllers\OtherController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContentController;
 use App\Models\ScoreQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -73,6 +74,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::patch('/question/{id}', [QuestionController::class, 'update']); // Update question NOTA: Falta probar
     Route::delete('/question/{id}', [QuestionController::class, 'destroy']); // Delete question
     Route::post('/question/{id}/validate', [QuestionController::class, 'validateQuestion']); // Validate question
+
+    // Contenido de la pagina
+    Route::get('/content', [ContentController::class, 'index']); // Get content list
+    Route::get('/content/{id}', [ContentController::class, 'show']); // Get content
+    Route::post('/content', [ContentController::class, 'store']); // Register content
+    Route::patch('/content/{id}', [ContentController::class, 'update']); // Update content
+    Route::delete('/content/{id}', [ContentController::class, 'destroy']); // Delete content
 
     // Scores al dia
     Route::post('/score', [ScoreController::class, 'storeScore']); // Register score

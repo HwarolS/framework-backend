@@ -19,4 +19,9 @@ class Label extends Model
     {
         return $this->belongsToMany(Question::class, 'labels_questions_relationship', 'label_id', 'question_id');
     }
+
+    public function contents()
+    {
+        return $this->belongsToMany(Content::class, 'labels_contents_relationship', 'label_id', 'content_id');
+    }
 }
