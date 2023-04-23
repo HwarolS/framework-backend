@@ -56,8 +56,13 @@ class UserDisabled extends Mailable
      *
      * @return array
      */
-    public function attachments()
+    // public function attachments()
+    // {
+    //     return [];
+    // }
+
+    public function build()
     {
-        return [];
+        return $this->view(($this->recovery) ? 'user.active' : 'user.disabled');
     }
 }

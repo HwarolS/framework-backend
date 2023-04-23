@@ -57,4 +57,9 @@ class PasswordReset extends Mailable
     {
         return [];
     }
+
+    public function build()
+    {
+        return $this->view(($this->recovery) ? 'user.active' : 'user.disabled');
+    }
 }
