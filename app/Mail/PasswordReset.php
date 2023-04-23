@@ -60,6 +60,6 @@ class PasswordReset extends Mailable
 
     public function build()
     {
-        return $this->view(($this->recovery) ? 'user.active' : 'user.disabled');
+        return $this->view('codeRecovery');
     }
 }
