@@ -32,24 +32,24 @@ class UserDisabled extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Envelope
      */
-    public function envelope()
-    {
-        return new Envelope(
-            subject: ($this->recovery) ? 'Reactivacion de cuenta' : 'Su cuenta ha sido deshabilitada',
-        );
-    }
+    // public function envelope()
+    // {
+    //     return new Envelope(
+    //         subject: ($this->recovery) ? 'Reactivacion de cuenta' : 'Su cuenta ha sido deshabilitada',
+    //     );
+    // }
 
     /**
      * Get the message content definition.
      *
      * @return \Illuminate\Mail\Mailables\Content
      */
-    public function content()
-    {
-        return new Content(
-            view: ($this->recovery) ? 'user.active' : 'user.disabled',
-        );
-    }
+    // public function content()
+    // {
+    //     return new Content(
+    //         view: ($this->recovery) ? 'user.active' : 'user.disabled',
+    //     );
+    // }
 
     /**
      * Get the attachments for the message.

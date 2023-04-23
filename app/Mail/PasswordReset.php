@@ -29,24 +29,24 @@ class PasswordReset extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Envelope
      */
-    public function envelope()
-    {
-        return new Envelope(
-            subject: 'Codigo de recuperacion de contraseña',
-        );
-    }
+    // public function envelope()
+    // {
+    //     return new Envelope(
+    //         subject: 'Codigo de recuperacion de contraseña',
+    //     );
+    // }
 
-    /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
-     */
-    public function content()
-    {
-        return new Content(
-            view: 'codeRecovery',
-        );
-    }
+    // /**
+    //  * Get the message content definition.
+    //  *
+    //  * @return \Illuminate\Mail\Mailables\Content
+    //  */
+    // public function content()
+    // {
+    //     return new Content(
+    //         view: 'codeRecovery',
+    //     );
+    // }
 
     /**
      * Get the attachments for the message.
@@ -60,6 +60,7 @@ class PasswordReset extends Mailable
 
     public function build()
     {
+        $this->subject('Codigo de recuperacion de contraseña');
         return $this->view('codeRecovery');
     }
 }
