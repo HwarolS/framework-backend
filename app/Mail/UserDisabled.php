@@ -63,6 +63,7 @@ class UserDisabled extends Mailable
 
     public function build()
     {
+        $this->subject(($this->recovery) ? 'Reactivacion de cuenta' : 'Su cuenta ha sido deshabilitada');
         return $this->view(($this->recovery) ? 'user.active' : 'user.disabled');
     }
 }
