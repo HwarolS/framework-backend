@@ -13,7 +13,9 @@ class ContentController extends Controller
     {
         $contents = Content::all();
 
-        return response()->json($contents, 200);
+        return response()->json([
+            'contents' => $contents,
+        ], 200);
     }
 
     public function store(Request $request)
@@ -130,6 +132,36 @@ class ContentController extends Controller
 
         return response()->json([
             'message' => 'Contenido Eliminado Correctamente',
+        ], 200);
+    }
+
+    public function getFiltered (Request $request) {
+        $request->validate([
+            'labels' => 'array',
+            'created_by_id' => 'numeric',
+        ]);
+
+        $contents = Content::query();
+
+        if ($request->has('labels')) {
+            $request->validate([
+                'labels.*.id' => 'required|exists:labels,id',
+            ]);
+            foreach ($request->labels as $label) {
+                $contents->whereHas('labels', function ($query) use ($label) {
+                    $query->where('id', $label['id']);
+                });
+            }
+        }
+
+        if ($request->has('created_by_id')) {
+            $contents->where('created_by_id', $request->created_by_id);
+        }
+
+        $contents = $contents->get();
+
+        return response()->json([
+            'contents' => $contents,
         ], 200);
     }
 }
