@@ -28,6 +28,7 @@ class ContentController extends Controller
             [
                 'title' => $request->title,
                 'content' => $request->content,
+                'created_by_id' => auth()->user()->user_id,
             ]
         );
 
