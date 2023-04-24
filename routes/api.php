@@ -81,6 +81,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/content', [ContentController::class, 'store']); // Register content
     Route::patch('/content/{id}', [ContentController::class, 'update']); // Update content
     Route::delete('/content/{id}', [ContentController::class, 'destroy']); // Delete content
+    Route::post('/content/filter', [ContentController::class, 'getFiltered']); // Filter content
 
     // Scores al dia
     Route::post('/score', [ScoreController::class, 'storeScore']); // Register score
