@@ -141,15 +141,17 @@ class ContentController extends Controller
             'created_by_id' => 'numeric',
         ]);
 
-        $contents = Content::getAll();
+        $contents = Content::query();
 
-        if ($request->has('labels')){
+        if ($request->has('labels')) {
             $request->validate([
                 'labels.*.id' => 'required|exists:labels,id',
             ]);
-            $contents->whereHas('labels', function ($query) use ($request) {
-                $query->whereIn('labels.id', $request->labels);
-            });
+            foreach ($request->labels as $label) {
+                $contents->whereHas('labels', function ($query) use ($label) {
+                    $query->where('id', $label['id']);
+                });
+            }
         }
 
         if ($request->has('created_by_id')) {
@@ -157,9 +159,6 @@ class ContentController extends Controller
         }
 
         $contents = $contents->get();
-
-        $contents->load('labels', 'createdBy');
-
 
         return response()->json([
             'contents' => $contents,
