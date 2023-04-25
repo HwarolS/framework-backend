@@ -160,6 +160,8 @@ class ContentController extends Controller
 
         $contents = $contents->get();
 
+        $contents->load('labels', 'createdBy');
+
         return response()->json([
             'contents' => $contents,
         ], 200);
